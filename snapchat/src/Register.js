@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Login extends Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {email: '', password: ''};
@@ -21,7 +21,7 @@ export default class Login extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
-    fetch("http://snapi.epitech.eu/connection", {
+    fetch("http://snapi.epitech.eu/inscription", {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(this.state)
@@ -31,7 +31,7 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <h1>Login</h1>
+        <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           <label for="email">E-mail </label>
           <input type="email" id="email" value={this.state.value} onChange={this.handleEmail}/><br/>

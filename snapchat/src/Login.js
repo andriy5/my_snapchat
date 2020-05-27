@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = {email: '', password: ''};
+    this.state = { email: "", password: "" };
 
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
@@ -11,32 +11,48 @@ export default class Login extends Component {
   }
 
   handleEmail(e) {
-    this.setState({email: e.target.value});
+    this.setState({ email: e.target.value });
   }
 
   handlePassword(e) {
-    this.setState({password: e.target.value});
+    this.setState({ password: e.target.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
     fetch("http://snapi.epitech.eu/connection", {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(this.state)
-    }).then(msg => { console.log(msg)})
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(this.state),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   }
-  
+
   render() {
     return (
       <div>
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
           <label for="email">E-mail </label>
-          <input type="email" id="email" value={this.state.value} onChange={this.handleEmail}/><br/>
+          <input
+            type="email"
+            id="email"
+            value={this.state.value}
+            onChange={this.handleEmail}
+          />
+          <br />
           <label for="password">Password </label>
-          <input type="password" id="password" value={this.state.value} onChange={this.handlePassword}/><br/>
+          <input
+            type="password"
+            id="password"
+            value={this.state.value}
+            onChange={this.handlePassword}
+          />
+          <br />
           <input type="submit" value="Connect" />
         </form>
       </div>

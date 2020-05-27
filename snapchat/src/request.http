@@ -1,0 +1,2 @@
+GET http://snapi.epitech.eu/all HTTP/1.1
+token: 5zoifgLKtviRDgRV8qQipdbP

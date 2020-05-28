@@ -1,4 +1,15 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation
+} from "react-router-dom";
+
+import SendSnap from "./SendSnap";
 
 export default class AllUsers extends Component {
   constructor(props) {
@@ -7,7 +18,10 @@ export default class AllUsers extends Component {
     this.state = {
       data: null,
       isReady: false,
+      userSelected: ''
     };
+
+    this.clickUser = this.clickUser.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +37,11 @@ export default class AllUsers extends Component {
       });
   }
 
+  clickUser(e) {
+    this.setState({userSelected: e.target.text})
+    document.getElementsByTagName('ul')[0].style.display = "none";
+  }
+
   render() {
     const users = this.state.data
 
@@ -33,17 +52,26 @@ export default class AllUsers extends Component {
     }
     else {
       return (
-        <div>
-          <ul>
-          { users.data.map((user, index) => (
-            <li key={index}>
-              <p>
-                {user.email}
-              </p>
-            </li>
-            ))}
-          </ul>
-        </div>
+        <Router>
+          <div>
+            <ul>
+            { users.data.map((user, index) => (
+              <li key={index}>
+                <Link to="/snap" onClick={this.clickUser}>{user.email}</Link>
+                {/* <a href="#">
+                  {user.email}
+                </a> */}
+              </li>
+              ))}
+            </ul>
+
+            <Switch>
+              <Route path="/snap">
+                <SendSnap receiver={this.state.userSelected}/>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
       );
     }
     

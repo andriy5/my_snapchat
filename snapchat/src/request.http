@@ -1,2 +1,3 @@
-GET http://snapi.epitech.eu/all HTTP/1.1
+POST http://snapi.epitech.eu/snap HTTP/1.1
 token: 5zoifgLKtviRDgRV8qQipdbP
+Content-Type: "multipart/form-data"

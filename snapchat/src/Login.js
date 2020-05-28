@@ -20,7 +20,6 @@ export default class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     fetch("http://snapi.epitech.eu/connection", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

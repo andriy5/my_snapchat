@@ -6,6 +6,7 @@ export default class AllUsers extends Component {
 
     this.state = {
       data: null,
+      isReady: false,
     };
   }
 
@@ -16,31 +17,35 @@ export default class AllUsers extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        this.setState({ data });
+        this.setState({ isReady: true,
+          data });
         console.log(this.state.data);
       });
   }
 
   render() {
-    return (
-      <div>
-        <ul>
-          <li>Machin 1</li>
-          <li>Machin 2</li>
-          <li>Machin 3</li>
-        </ul>
-      </div>
-    );
-  }
-}
+    const users = this.state.data
 
-function ShowUsers(params) {
-  console.log(params)
-  
-  // for (const key in params) {
-  //   if (object.hasOwnProperty(key)) {
-  //     const element = object[key];
-  //     console.log(element)
-  //   }
-  // }
+    if (!this.state.isReady) {
+      return (
+      <div>It comes...</div>
+      );
+    }
+    else {
+      return (
+        <div>
+          <ul>
+          { users.data.map((user, index) => (
+            <li key={index}>
+              <p>
+                {user.email}
+              </p>
+            </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+    
+  }
 }

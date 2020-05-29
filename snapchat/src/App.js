@@ -11,6 +11,8 @@ import './App.css';
 
 import Welcome from "./Welcome";
 import AllUsers from './AllUsers';
+import AllSnaps from './AllSnaps';
+
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
           <Switch>
             <Route path="/all">
               <AllUsers />
+            </Route>
+            <Route path="/snaps">
+              <AllSnaps />
             </Route>
           </Switch>
         </div>

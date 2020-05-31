@@ -18,16 +18,20 @@ export default class AllUsers extends Component {
     this.state = {
       data: null,
       isReady: false,
-      userSelected: ''
+      userSelected: '',
+
     };
 
     this.clickUser = this.clickUser.bind(this);
   }
 
   componentDidMount() {
+    console.log(localStorage.getItem('tokenAuth'))
+    let localToken = localStorage.getItem('tokenAuth')
+
     fetch("http://snapi.epitech.eu/all", {
       method: "GET",
-      headers: { token: "5zoifgLKtviRDgRV8qQipdbP" },
+      headers: { token: localToken },
     })
       .then((response) => response.json())
       .then((data) => {

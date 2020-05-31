@@ -8,6 +8,11 @@ import Register from './Register';
 
 
 export default class Welcome extends Component {
+  componentDidMount() {
+    document.getElementById('navbar').style.display = "none";
+  }
+  
+
   render() {
     return (
       <div className="App">

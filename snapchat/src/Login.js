@@ -1,9 +1,17 @@
 import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = { email: "", password: "", isAuth: false};
 
     this.handleEmail = this.handleEmail.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
@@ -27,34 +35,48 @@ export default class Login extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.data.token);
+        localStorage.setItem('tokenAuth', data.data.token); 
+        console.log(localStorage.getItem('tokenAuth'))
+        this.setState({isAuth: true})
       });
   }
 
   render() {
-    return (
-      <div>
-        <h1>Login</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label for="email">E-mail </label>
-          <input
-            type="email"
-            id="email"
-            value={this.state.value}
-            onChange={this.handleEmail}
-          />
-          <br />
-          <label for="password">Password </label>
-          <input
-            type="password"
-            id="password"
-            value={this.state.value}
-            onChange={this.handlePassword}
-          />
-          <br />
-          <input type="submit" value="Connect" />
-        </form>
-      </div>
-    );
+    if(this.state.isAuth == true){
+      return (
+      <Router>
+        <Switch>
+          <Redirect to="/all"/>
+        </Switch>
+      </Router>
+      )
+    }
+    else {
+      return (
+        <div>
+          <h1>Login</h1>
+          <form onSubmit={this.handleSubmit}>
+            <label for="email">E-mail </label>
+            <input
+              type="email"
+              id="email"
+              value={this.state.value}
+              onChange={this.handleEmail}
+            />
+            <br />
+            <label for="password">Password </label>
+            <input
+              type="password"
+              id="password"
+              value={this.state.value}
+              onChange={this.handlePassword}
+            />
+            <br />
+            <input type="submit" value="Connect" />
+          </form>
+        </div>
+      );
+    }
   }
 }

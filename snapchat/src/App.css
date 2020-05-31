@@ -21,3 +21,9 @@
 .App-link {
   color: #403203;
 }
+
+#navbar li {
+  margin-right: 10vw;
+  justify-content: center;
+  display: inline;
+}

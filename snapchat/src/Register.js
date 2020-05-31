@@ -27,7 +27,9 @@ export default class Register extends Component {
       body: JSON.stringify(this.state)
     })
     .then(response => response.json())
-    .then(data => { console.log(data)})
+    .then(data => { 
+      console.log(data)
+    })
   }
   
   render() {

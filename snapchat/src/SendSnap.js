@@ -46,7 +46,7 @@ export default class SendSnap extends Component {
     axios.post("http://snapi.epitech.eu/snap", formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        'token': "5zoifgLKtviRDgRV8qQipdbP"
+        'token': localStorage.getItem('tokenAuth')
       }})
     
     // FETCH ----
@@ -74,8 +74,7 @@ export default class SendSnap extends Component {
     // else {
       return (
         <div>
-          <h3>Bonjour je veux envoyer un snap à {this.props.receiver}</h3>
-          <button onClick={this.handleSubmit}>Test</button>
+          <h3>Send a snap to {this.props.receiver}</h3>
           <form onSubmit={this.handleSubmit}>
             <select value={this.state.duration} onChange={this.handleDuration}>
               <option value="1">1</option>

@@ -24,10 +24,12 @@ export default class AllSnaps extends Component {
   }
 
   componentDidMount() {
-    
+    console.log(localStorage.getItem('tokenAuth'))
+    let localToken = localStorage.getItem('tokenAuth')
+
     fetch("http://snapi.epitech.eu/snaps", {
       method: "GET",
-      headers: { token: "5zoifgLKtviRDgRV8qQipdbP" },
+      headers: { token: localToken },
     })
     .then((response) => response.json())
     .then((data) => {
@@ -50,24 +52,31 @@ export default class AllSnaps extends Component {
       );
     }
     else {
-      return (
-        <Router>
-          <div>
-            <ul>
-            { users.data.map((user, index) => (
-              <li key={index} onClick={() => this.changeDuration(user.duration)}>
-                <Link to={`/snap/${user.snap_id}`}>{user.from}</Link>
-              </li>
-              ))}
-            </ul>
-
-                <Switch>
-                  <Route path="/snap/:id" 
-                  render={ (props) => <ReceiveSnap {...props} duration={this.state.duration} /> } />
-                </Switch>
-          </div>
-        </Router>
-      );
+      console.log(users.data)
+      if (users.data.length == 0){
+        return <h3>Whoopsy, no snap.</h3>
+      }
+      else{
+        return (
+          <Router>
+            <div>
+              <ul>
+              { users.data.map((user, index) => (
+                <li key={index} onClick={() => this.changeDuration(user.duration)}>
+                  <Link to={`/snap/${user.snap_id}`}>{user.from}</Link>
+                </li>
+                ))}
+              </ul>
+  
+                  <Switch>
+                    <Route path="/snap/:id" 
+                    render={ (props) => <ReceiveSnap {...props} duration={this.state.duration} /> } />
+                  </Switch>
+            </div>
+          </Router>
+        );
+        
+      }
     }  
   }
 }

@@ -19,11 +19,12 @@ export default class AllSnaps extends Component {
     this.state = {
       data: null,
       isReady: false,
-      snapSelected: ''
+      duration: null
     };
   }
 
   componentDidMount() {
+    
     fetch("http://snapi.epitech.eu/snaps", {
       method: "GET",
       headers: { token: "5zoifgLKtviRDgRV8qQipdbP" },
@@ -36,6 +37,10 @@ export default class AllSnaps extends Component {
     });
   }
 
+  changeDuration(duration) {
+    this.setState({duration})
+  }
+  
   render() {
     const users = this.state.data
 
@@ -50,15 +55,16 @@ export default class AllSnaps extends Component {
           <div>
             <ul>
             { users.data.map((user, index) => (
-              <li key={index}>
+              <li key={index} onClick={() => this.changeDuration(user.duration)}>
                 <Link to={`/snap/${user.snap_id}`}>{user.from}</Link>
               </li>
               ))}
             </ul>
 
-            <Switch>
-              <Route path="/snap/:id" component={ReceiveSnap} />
-            </Switch>
+                <Switch>
+                  <Route path="/snap/:id" 
+                  render={ (props) => <ReceiveSnap {...props} duration={this.state.duration} /> } />
+                </Switch>
           </div>
         </Router>
       );

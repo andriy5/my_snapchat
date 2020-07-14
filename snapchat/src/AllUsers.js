@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import {
   BrowserRouter as Router,
@@ -43,7 +44,7 @@ export default class AllUsers extends Component {
 
   clickUser(e) {
     this.setState({userSelected: e.target.text})
-    document.getElementsByTagName('ul')[0].style.display = "none";
+    document.getElementById("list-users").style.display = "none";
   }
 
   render() {
@@ -51,30 +52,32 @@ export default class AllUsers extends Component {
 
     if (!this.state.isReady) {
       return (
-      <div>It comes...</div>
+      <div className="message">It comes...</div>
       );
     }
     else {
       return (
         <Router>
-          <div>
+          <div id="list-users">
             <ul>
             { users.data.map((user, index) => (
-              <li key={index}>
-                <Link to="/snap" onClick={this.clickUser}>{user.email}</Link>
-                {/* <a href="#">
+              <li key={index} className="align-mi">
+                <i className="material-icons">person</i><Link to="/snap" onClick={this.clickUser}>
                   {user.email}
-                </a> */}
+                  {/* {user.email.length < 30 
+                  ? user.email 
+                  : user.email.substr(0, 30).trim() + user.email.substr(30).trim()} */}
+                  </Link><i className="material-icons send-logo">keyboard_arrow_right</i>
               </li>
               ))}
             </ul>
 
+          </div>
             <Switch>
               <Route path="/snap">
                 <SendSnap receiver={this.state.userSelected}/>
               </Route>
             </Switch>
-          </div>
         </Router>
       );
     }

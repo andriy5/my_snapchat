@@ -31,7 +31,7 @@ export default class Welcome extends Component {
                   <Register />
                 </Route>
               </Switch>
-              <div>
+              <div className="welcome">
                 <Link to="/login">Login</Link>&nbsp;
                 <Link to="/register">Register</Link>
               </div>

@@ -44,13 +44,12 @@ export default class Login extends Component {
 
   render() {
     if(this.state.isAuth == true){
-      return (
-      <Router>
-        <Switch>
-          <Redirect to="/all"/>
-        </Switch>
-      </Router>
-      )
+      window.location.href = "/all";
+      // return (
+      // <Route>
+      //   <Redirect to="/all"/>
+      // </Route>
+      // )
     }
     else {
       return (

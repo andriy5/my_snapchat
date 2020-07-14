@@ -8,30 +8,32 @@ import {
 } from "react-router-dom";
 
 import logo from './ghost512.png';
+import "material-icons/iconfont/material-icons.css";
 import './App.css';
 
 import Welcome from "./Welcome";
 import AllUsers from './AllUsers';
 import AllSnaps from './AllSnaps';
 import LogOut from './LogOut'
+import SendSnap from './SendSnap';
 
 
 function App() {
   return (
     <div>
-      {/* <Welcome /> */}
       <Router>
         <div >
           <div id="navbar">
             <ul>
               <li>
-                <Link to="/all">Users</Link>
+                {/* <Link to="/all">Users</Link> */}
+                <a href="/all"><span class="material-icons icon-white">people</span></a>
               </li>
               <li>
-                <Link to="/snaps">Snap</Link>
+                <Link to="/snaps"><i class="material-icons icon-white">chat_bubble</i></Link>
               </li>
               <li>
-                <Link to="/logout">Log Out</Link>
+                <Link to="/logout"><span class="material-icons icon-white exit">exit_to_app</span></Link>
               </li>
             </ul>
           </div>

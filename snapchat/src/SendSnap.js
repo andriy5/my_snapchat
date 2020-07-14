@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import axios from "axios";
+import { Redirect, Route } from "react-router-dom";
 
 export default class SendSnap extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ export default class SendSnap extends Component {
 
     this.state = {
       duration: 1,
-      to: props.receiver
+      to: this.props.receiver
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,6 +17,11 @@ export default class SendSnap extends Component {
     this.handleImage = this.handleImage.bind(this);
     this.fileInput = React.createRef();
   }
+
+  componentDidMount() {
+    console.log(this.state)
+  }
+  
 
   handleDuration(e) {
     this.setState({duration: e.target.value})
@@ -27,14 +33,8 @@ export default class SendSnap extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    if (this.state.image){
-      alert(
-        `Selected file - ${this.fileInput.current.files[0].name}`
-      );
-    }
+    document.getElementById("message").style.display = "block";
 
-    
-    
     const formData = new FormData();
     formData.append("duration", this.state.duration);
     formData.append("to", this.state.to);
@@ -48,17 +48,9 @@ export default class SendSnap extends Component {
         'Content-Type': 'multipart/form-data',
         'token': localStorage.getItem('tokenAuth')
       }})
-    
-    // FETCH ----
-    // fetch("http://snapi.epitech.eu/snap", {
-    //   method: "POST",
-    //   headers: { 
-    //     "Content-Type": "multipart/form-data",
-    //     token: "5zoifgLKtviRDgRV8qQipdbP"
-    //   },
-    //   body:FormData,
-    // })
       .then(res => {
+        document.getElementById("message").style.display = "none";
+        document.getElementById("send-success").style.display = "block";
         console.log({res});
       }).catch(err => {
           console.error({err});
@@ -67,32 +59,41 @@ export default class SendSnap extends Component {
 
   
   render() {
-    // const user = this.props.receiver
-    // if (!user) {
-    //   return <h3>No one is selected...</h3>
-    // }
-    // else {
+    if (this.props.receiver){
       return (
         <div>
-          <h3>Send a snap to {this.props.receiver}</h3>
-          <form onSubmit={this.handleSubmit}>
-            <select value={this.state.duration} onChange={this.handleDuration}>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <input type="file" ref={this.fileInput} onChange={this.handleImage} />
-            <input type="submit" value="Submit" />
-          </form>
+          <p id="message" style={{display: 'none'}}>Chargement...</p>
+          <h3>Send a snap to <u>{this.props.receiver}</u></h3>
+          <div className="form-part">
+            <form onSubmit={this.handleSubmit}>
+              <div className="second-part">
+                <h4>Choose seconds</h4>
+                <select value={this.state.duration} onChange={this.handleDuration}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+              <div className="file-part">
+                <h4>Choose an image</h4>
+                <input type="file" ref={this.fileInput} onChange={this.handleImage} />
+              </div>
+              <input type="submit" value="Submit" />
+            </form>
+          </div>
+          <div id="send-success" style={{display: 'none'}}>
+            <iframe src="https://giphy.com/embed/tIeCLkB8geYtW" width="120" height="95" frameBorder="0" class="giphy-embed"></iframe>
+            <p>Send with success !</p>
+          </div>
         </div>
       );
-    // }
+    }
   }
 }

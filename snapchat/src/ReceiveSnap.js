@@ -59,6 +59,7 @@ export default class ReceiveSnap extends Component {
       })
       .then((data) => {
         console.log('Success:', data);
+        window.location.href = "/snaps";
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -95,9 +96,9 @@ export default class ReceiveSnap extends Component {
     }
     else {
       return (
-        <div>
-          <h1>{this.state.duration}</h1>
-          <img src={this.state.snap} />
+        <div className="snap-part">
+          <p className="snap-duration">{this.state.duration}</p>
+          <img className="snap-image" src={this.state.snap} />
         </div>
       )
     }

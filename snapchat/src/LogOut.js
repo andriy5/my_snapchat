@@ -10,19 +10,35 @@ import {
 import App from './App'
 
 export default class LogOut extends Component {
-  componentDidMount() {
-    window.localStorage.removeItem("tokenAuth");
+  constructor() {
+    super()
+
+    this.state = {ready: false};
+  }
+
+  async componentDidMount() {
+    await window.localStorage.removeItem("tokenAuth");
+    this.setState({ready: true});
   }
   
 
   render() {
-    return (
-      <div>
-        <Redirect to="/" />
-        <Route path="/">
-          <App />
-        </Route>
-      </div>
-    )
+    let ready = this.state.ready; 
+    if (ready) {
+      return (
+        <div>
+          <Route path="/">
+            <Redirect to="/welcome" />
+          </Route>
+        </div>
+      )
+    }
+    else {
+      return (
+        <div>
+          Disconnecting...
+        </div>
+      )
+    }
   }
 }

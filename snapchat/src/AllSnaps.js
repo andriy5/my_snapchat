@@ -54,16 +54,23 @@ export default class AllSnaps extends Component {
     else {
       console.log(users.data)
       if (users.data.length == 0){
-        return <h3>Whoopsy, no snap.</h3>
+        return <h3>No snap received</h3>
       }
       else{
         return (
           <Router>
-            <div>
+            <div id="list-users">
+              <h3>You received {users.data.length} snaps !</h3>
               <ul>
               { users.data.map((user, index) => (
-                <li key={index} onClick={() => this.changeDuration(user.duration)}>
-                  <Link to={`/snap/${user.snap_id}`}>{user.from}</Link>
+                // <li key={index} onClick={() => this.changeDuration(user.duration)}>
+                //   <Link to={`/snap/${user.snap_id}`}>{user.from}</Link>
+                // </li>
+
+                <li key={index} className="align-mi" onClick={() => this.changeDuration(user.duration)}>
+                <i className="material-icons">person</i><Link to={`/snap/${user.snap_id}`}>
+                  {user.from}
+                  </Link><i className="material-icons send-logo">keyboard_arrow_right</i>
                 </li>
                 ))}
               </ul>

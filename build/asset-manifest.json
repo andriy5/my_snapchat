@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/my_snapchat/static/css/main.6942c781.chunk.css",
+    "main.js": "/my_snapchat/static/js/main.549aa711.chunk.js",
+    "main.js.map": "/my_snapchat/static/js/main.549aa711.chunk.js.map",
+    "runtime-main.js": "/my_snapchat/static/js/runtime-main.0119c3c9.js",
+    "runtime-main.js.map": "/my_snapchat/static/js/runtime-main.0119c3c9.js.map",
+    "static/css/2.0955cf81.chunk.css": "/my_snapchat/static/css/2.0955cf81.chunk.css",
+    "static/js/2.880b7118.chunk.js": "/my_snapchat/static/js/2.880b7118.chunk.js",
+    "static/js/2.880b7118.chunk.js.map": "/my_snapchat/static/js/2.880b7118.chunk.js.map",
+    "index.html": "/my_snapchat/index.html",
+    "precache-manifest.eb6c8ec13bae7fe111917ac7088c9925.js": "/my_snapchat/precache-manifest.eb6c8ec13bae7fe111917ac7088c9925.js",
+    "service-worker.js": "/my_snapchat/service-worker.js",
+    "static/css/2.0955cf81.chunk.css.map": "/my_snapchat/static/css/2.0955cf81.chunk.css.map",
+    "static/css/main.6942c781.chunk.css.map": "/my_snapchat/static/css/main.6942c781.chunk.css.map",
+    "static/js/2.880b7118.chunk.js.LICENSE.txt": "/my_snapchat/static/js/2.880b7118.chunk.js.LICENSE.txt",
+    "static/media/material-icons.css": "/my_snapchat/static/media/MaterialIcons-Regular.d120c85b.ttf",
+    "static/media/ghost512.png": "/my_snapchat/static/media/ghost512.54bea9c3.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0119c3c9.js",
+    "static/css/2.0955cf81.chunk.css",
+    "static/js/2.880b7118.chunk.js",
+    "static/css/main.6942c781.chunk.css",
+    "static/js/main.549aa711.chunk.js"
+  ]
+}
